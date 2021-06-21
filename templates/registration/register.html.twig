@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class = "container">
+        {{ form_start(registrationForm) }}
+        <div class="form-group">
+            {{ form_row(registrationForm.name, {'attr': {label: 'Имя Пользователя', 'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(registrationForm.email, {'attr': {label: 'Email', 'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(registrationForm.plainPassword.first, {label: 'Пароль', 'attr': {'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(registrationForm.plainPassword.second, {label: 'Повтор пароля', 'attr': {'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(registrationForm.agreeTerms, {label: 'Я принимаю правила сайта'}) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Регистрация</button>
+        <div id="login-link" class="text-right">
+            <a href="{{ path('app_login') }}" class="text-info">Вход</a>
+        </div>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

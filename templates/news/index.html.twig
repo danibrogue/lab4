@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main class="container mt-5">
+    <div class="row g-3 mb-3">
+        {% for news in listNews %}
+        <div class="card col-3 m-2">
+            <div class="card-header">
+                <p>Дата добавления: {{ news.createdAt|format_datetime('short', 'short') }}</p>
+                <p class="ml-2">Комментариев: {{ news.comments|length }}</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ news.name }}</h5>
+                <p class="card-text">{{ news.shortContent }}</p>
+                <a href="{{ path('news_show', {'id': news.id}) }}" class="btn btn-primary">Читать</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

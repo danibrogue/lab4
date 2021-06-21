@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="container mt-5">
+        <div class="card">
+        <h5 class="card-header">
+            <p>Дата публикации: {{ news.createdAt|format_datetime('short', 'short') }}</p>
+            <p class="ml-2">Просмотров: {{ news.views }}</p>
+        </h5>
+        <div class="card-body">
+            <h5 class="card-title">{{ news.name }}</h5>
+            <p class="card-text">{{ news.content }}</p>
+        </div>
+        </div>
+        <h2>Комментарии:</h2>
+        {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_widget(form.content) }}
+                </div>
+                <button type="submit" class="btn btn-success mt-2 mb-3"
+                    style="margin-bottom: 8px;">Добавить</button>
+        {{ form_end(form) }}
+        {% for comment in commentsList %}
+        <div class="card mb-3">
+            <div class="card-header">
+                Автор: {{ comment.user.name }}
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                <p>{{ comment.content }}</p>
+                <footer class="blockquote-footer">{{ news.createdAt|format_datetime('short', 'short') }}</footer>
+                </blockquote>
+            </div>
+        </div>
+        {% else %}
+            <h4 class="text-center fs-5">Комментариев пока нет</h4>
+        {% endfor %}
+    </main>
+{% endblock %}

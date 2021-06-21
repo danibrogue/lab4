@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AboutController!{% endblock %}
+
+{% block body %}
+<main role="main" class="container">
+      <div class="jumbotron">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h1>О проекте</h1>
+        <p class="lead">Скоро здесь будет новостной портал</p>
+        {% else %}
+        <a class="btn btn-lg btn-primary" href="{{ path('app_login') }}" role="button">Сначала войдите »</a>
+        {% endif %}
+      </div>
+    </main>
+{% endblock %}
